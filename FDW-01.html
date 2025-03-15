@@ -225,7 +225,7 @@
     <div class="row">
       <div class="column" style="flex: 80%;">
         <p style="text-align: left; margin-bottom: 20px;">Use the Genesys Spec 20 spectrophotometer and matched test tubes containing dye stock solution and D.I. water to collect absorbance measurments.</p>
-        <p id="dyeConcDisplay" style="text-align: left; margin-bottom: 20px;">Dye stock concentration: <strong><span>_____</span> M</strong></p>
+        <p id="dyeConcDisplay" style="text-align: left; margin-bottom: 20px;">Dye stock concentration: <strong><span></span> M</strong></p>
         <div id="glassware-container-1">
           <img id="background" src="https://github.com/johannalherman/131-FDW/blob/main/Background_v1.png?raw=true">
           <div id="dye" class="dye"></div>  
@@ -431,7 +431,7 @@
       setTimeout(() => {
         update_nmDisplay();
         update_absDisplay();
-      }, 2000);
+      }, 1000);
     }
 
     function nmZero() {
@@ -449,9 +449,9 @@
     }
 
     const Dyes = {
-      Red: { c0: 4.50e-5, color: "#E02910"},
-      Blue: { c0: 1.00e-5, color: "#0000FF"},
-      Yellow: { c0: 3.00e-5, color: "#FFFF00"}
+      Red: { c0: 3.725e-5, color: "#E02910"},
+      Blue: { c0: 8.108e-6, color: "#0000FF"},
+      Yellow: { c0: 2.871e-5, color: "#ffe24e"}
     };
 
 
