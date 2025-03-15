@@ -234,11 +234,11 @@
           <img id="waterTestTube" style="left: 275px;" src="https://github.com/johannalherman/131-FDW/blob/main/Test%20Tube.png?raw=true">
         </div>
         <div class="button-container" style="margin-top: 380px;">
-          <p style="text-align: center;"><strong>Water Test Tube:  </strong>
+          <p style="text-align: center; margin-bottom: 0px;"><strong>Water Test Tube:  </strong>
             <button id="waterIn" onclick="move_waterTestTube('in')">In Spec</button>
             <button id="waterOut" onclick="move_waterTestTube('out')" type="button" disabled>Out Spec</button>
           </p>        
-          <p style="text-align: center;"><strong>Dye Test Tube:  </strong>        
+          <p style="text-align: center; margin-top: 0px;"><strong>Dye Test Tube:  </strong>        
             <button id="dyeIn" onclick="move_dyeTestTube('in')" type="button" disabled>In Spec</button>
             <button id="dyeOut" onclick="move_dyeTestTube('out')" type="button" disabled>Out Spec</button>
           </p>
@@ -254,14 +254,14 @@
             <button id="nm_down" style="left: 204px; top: 193px" onclick="nmChange('down')">  </button>
             <button id="zeroAbs" style="left: 178px; top: 254px" onclick="nmZero()">  </button>
           </div>
-          <p id="nmReading"><span>600</span> nm</p> 
+          <p id="nmReading"><span>000</span> nm</p> 
           <p id="absReading"><span>0.000</span> A</p> 
         </div>
       </div>
     </div>
   </body>
   <script>
-    let nm_num = 600
+    let nm_num = 579
     let abs_num = 0
     let dyeConc = 0
     let bc = []
@@ -272,6 +272,7 @@
     let currentTestTube = ""
 
     update_absDisplay();
+    update_nmDisplay();
 
     document.getElementById("dyeSetSelector").addEventListener("change", function(event) {    
       currentDye = event.target.value
@@ -406,9 +407,6 @@
       document.querySelector('#nmReading span').textContent =  '- - -';
       document.querySelector('#absReading span').textContent =  '- . - - -';
 
-      if (currentTestTube === "dyeTestTube" || currentTestTube === "waterTestTube") {
-        abs_TestTube = bc_TestTube[nm_num];
-      } else (abs_TestTube = 0)
 
       if (direction === 'up') {
         if (nm_num < 900) {
@@ -426,10 +424,14 @@
         }
       }
 
+      if (currentTestTube === "dyeTestTube" || currentTestTube === "waterTestTube") {
+        abs_TestTube = bc_TestTube[nm_num];
+      } else (abs_TestTube = 0)
+      
       setTimeout(() => {
         update_nmDisplay();
         update_absDisplay();
-      }, 3000);
+      }, 2000);
     }
 
     function nmZero() {
@@ -443,7 +445,7 @@
         default:
           abs_offSet = 0;
       }
-      update_absDisplay()
+      update_absDisplay();
     }
 
     const Dyes = {
