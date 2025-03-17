@@ -114,19 +114,26 @@
         margin: auto;
       }
 
-      #glassware-container-1, #glassware-container-2 { 
+      #glassware-container-1, #glassware-container-2, #glassware-container-3, #glassware-container-4, #glassware-container-5 { 
         margin: auto; 
         position: relative; 
         width: 400px;
       }
-      #background {
+      #background-1, #background-2 {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
         width: 500px;
         z-index: -10;
       }
-      #specPanel {
+      #background-3 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 500px;
+        z-index: 0;
+      }
+      #specPanel_1, #specPanel_2 {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -146,7 +153,7 @@
       }
       .spec-button-container button:focus {
       }
-      #nmReading {
+      #nmReading_1, #nmReading_2 {
         position: relative;
         top: 67px;
         left: -60px;
@@ -154,7 +161,7 @@
         font-weight: bold;
         z-index: 100;
       }
-      #absReading {
+      #absReading_1, #absReading_2 {
         position: relative;
         top: 15px;
         left: 60px;
@@ -163,20 +170,19 @@
         z-index: 100;
       }
 
-      #waterTestTube {
+      #waterTestTube_1 {
         position: absolute;
         bottom: -310px;
         width: 50px;
         z-index: 20;
       }
-      #dyeTestTube {
+      #dyeTestTube_1 {
         position: absolute;
         bottom: -310px;
         width: 50px;
         z-index: -20;
       }
-
-      #water {
+      #water_1 {
         position: absolute;
         bottom: -306px;
         left: 281px;
@@ -188,7 +194,44 @@
         border-radius: 0px 0px 150px 150px;
         z-index: -10;
       }
-      #dye {
+      #dye_1 {
+        position: absolute;
+        bottom: -306px;
+        left: 361px;
+        width: 38px;
+        height: 0px;
+        background: #abdcf2;
+        transition: height 0.3s;
+        opacity: 0.50;
+        border-radius: 0px 0px 150px 150px;
+        z-index: -10;
+      }
+
+      #waterTestTube_2 {
+        position: absolute;
+        bottom: -310px;
+        width: 50px;
+        z-index: 20;
+      }
+      #dyeTestTube_2 {
+        position: absolute;
+        bottom: -310px;
+        width: 50px;
+        z-index: 20;
+      }
+      #water_2 {
+        position: absolute;
+        bottom: -306px;
+        left: 281px;
+        width: 38px;
+        height: 150px;
+        background: #abdcf2;
+        transition: height 0.3s;
+        opacity: 0.75;
+        border-radius: 0px 0px 150px 150px;
+        z-index: -10;
+      }
+      #dye_2 {
         position: absolute;
         bottom: -306px;
         left: 361px;
@@ -198,6 +241,39 @@
         transition: height 0.3s;
         opacity: 0.50;
         border-radius: 0px 0px 150px 150px;
+        z-index: -10;
+      }
+      #solution_0 {
+        position: absolute;
+        bottom: 62px;
+        left: 30px;
+        width: 159px;
+        height: 0px;
+        background: #E02910;
+        transition: height 0.3s;
+        opacity: 0.50;
+        z-index: -20;
+      }
+      #solution_2 {
+        position: absolute;
+        bottom: 78px;
+        left: 345px;
+        width: 56px;
+        height: 0px;
+        background: #E02910;
+        transition: height 0.3s;
+        opacity: 0.50;
+        z-index: -10;
+      }
+      .solution_2::after {
+        content: "";
+        position: absolute;
+        top: 0px;
+        right: 50%; transform: translateX(50%);
+        width: 100%;
+        height: 5px;
+        background: black; /* Subtle meniscus highlight */
+        border-radius: 0% 0% 50% 50%; /* Round only the bottom corners */
         z-index: -10;
       }
 
@@ -222,70 +298,174 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="column" style="flex: 80%;">
-        <p style="text-align: left; margin-bottom: 20px;">Use the Genesys Spec 20 spectrophotometer and matched test tubes containing dye stock solution and D.I. water to collect absorbance measurments.</p>
-        <p id="dyeConcDisplay" style="text-align: left; margin-bottom: 20px;">Dye stock concentration: <strong><span></span> M</strong></p>
-        <div id="glassware-container-1">
-          <img id="background" src="https://github.com/johannalherman/131-FDW/blob/main/Background_v1.png?raw=true">
-          <div id="dye" class="dye"></div>  
-          <img id="dyeTestTube" style="left: 355px;" src="https://github.com/johannalherman/131-FDW/blob/main/Test%20Tube.png?raw=true">
-          <div id="water" class="water"></div>  
-          <img id="waterTestTube" style="left: 275px;" src="https://github.com/johannalherman/131-FDW/blob/main/Test%20Tube.png?raw=true">
-        </div>
-        <div class="button-container" style="margin-top: 380px;">
-          <p style="text-align: center; margin-bottom: 0px;"><strong>Water Test Tube:  </strong>
-            <button id="waterIn" onclick="move_waterTestTube('in')">In Spec</button>
-            <button id="waterOut" onclick="move_waterTestTube('out')" type="button" disabled>Out Spec</button>
-          </p>        
-          <p style="text-align: center; margin-top: 0px;"><strong>Dye Test Tube:  </strong>        
-            <button id="dyeIn" onclick="move_dyeTestTube('in')" type="button" disabled>In Spec</button>
-            <button id="dyeOut" onclick="move_dyeTestTube('out')" type="button" disabled>Out Spec</button>
-          </p>
-        </div>
-      </div>
+    <!-- Tab content -->
+    <div id="Tab1" class="tabcontent">
 
-
-      <div class="column" style="flex: 20%;">
-        <div id="glassware-container-2">
-          <img id="specPanel" src="https://github.com/johannalherman/131-FDW/blob/main/Spec20%20Control%20Panel.png?raw=true">
-          <div class="spec-button">
-            <button id="nm_up" style="left: 152px; top: 193px" onclick="nmChange('up')">  </button>
-            <button id="nm_down" style="left: 204px; top: 193px" onclick="nmChange('down')">  </button>
-            <button id="zeroAbs" style="left: 178px; top: 254px" onclick="nmZero()">  </button>
+      <div class="row">
+        <div class="column" style="flex: 80%;">
+          <p style="text-align: left; margin-bottom: 20px;"><strong>2)</strong> Use the Genesys Spec 20 spectrophotometer and matched test tubes containing dye stock solution and D.I. water to collect absorbance measurments.</p>
+          <p id="dyeConcDisplay_1" style="text-align: left; margin-bottom: 20px;">Dye stock concentration: <strong><span>- - -</span> M</strong></p>
+          <div id="glassware-container-1">
+            <img id="background-1" src="https://github.com/johannalherman/131-FDW/blob/main/Background_v1.png?raw=true">
+            <div id="dye_1" class="dye_1"></div>  
+            <img id="dyeTestTube_1" style="left: 355px;" src="https://github.com/johannalherman/131-FDW/blob/main/Test%20Tube.png?raw=true">
+            <div id="water_1" class="water_1"></div>  
+            <img id="waterTestTube_1" style="left: 275px;" src="https://github.com/johannalherman/131-FDW/blob/main/Test%20Tube.png?raw=true">
           </div>
-          <p id="nmReading"><span>000</span> nm</p> 
-          <p id="absReading"><span>0.000</span> A</p> 
+          <div class="button-container" style="margin-top: 380px;">
+            <p style="text-align: center; margin-bottom: 0px;"><strong>Water Test Tube:  </strong>
+              <button id="waterIn_1" onclick="move_waterTestTube_1('in')">In Spec</button>
+              <button id="waterOut_1" onclick="move_waterTestTube_1('out')" type="button" disabled>Out Spec</button>
+            </p>        
+            <p style="text-align: center; margin-top: 0px;"><strong>Food Dye Test Tube:  </strong>        
+              <button id="dyeIn_1" onclick="move_dyeTestTube_1('in')" type="button" disabled>In Spec</button>
+              <button id="dyeOut_1" onclick="move_dyeTestTube_1('out')" type="button" disabled>Out Spec</button>
+            </p>
+          </div>
+        </div>
+
+        <div class="column" style="flex: 20%;">
+          <div id="glassware-container-2">
+            <img id="specPanel_1" src="https://github.com/johannalherman/131-FDW/blob/main/Spec20%20Control%20Panel.png?raw=true">
+            <div class="spec-button">
+              <button id="nm_up_1" style="left: 152px; top: 193px" onclick="nmChange_1('up')">  </button>
+              <button id="nm_down_1" style="left: 204px; top: 193px" onclick="nmChange_1('down')">  </button>
+              <button id="zeroAbs_1" style="left: 178px; top: 254px" onclick="nmZero_1()">  </button>
+            </div>
+            <p id="nmReading_1"><span>000</span> nm</p> 
+            <p id="absReading_1"><span>0.000</span> A</p> 
+          </div>
         </div>
       </div>
+
+      <div class="tab" style="margin: 100px 10px 40px 10px;">
+        <button class="tablinks" onclick="openTabs(event, 'Tab2')"><strong>3)</strong> Create Standard Calibration Curve!</button>
+      </div>
+
     </div>
+
+
+    <div id="Tab2" class="tabcontent">
+
+      <p style="text-align: left; margin-bottom: 20px;"><strong>4)</strong> Use the graduated cylinder to prepare a dilution of your food dye.</p>
+      <div class="row">        
+        <div class="column" style="flex: 50%;">
+          <div class="button-container">
+            <p style="text-align: center; margin-top: 0px;"><strong>Food Dye:  </strong>        
+              <button id="dyeDropsIn" onclick="addSolution('drops')" type="button" disabled>Add Drops</button>        
+              <button id="dyePourIn" onclick="addSolution()" type="button" disabled>Pour In</button>
+            </p> 
+            <p style="text-align: center; margin-bottom: 0px;"><strong>Water:  </strong>
+              <button id="waterDropsIn" onclick="addWater('drops')" type="button" disabled>Add Drops</button>
+              <button id="waterPourIn" onclick="addWater()" type="button" disabled>Pour In</button>
+            </p>
+          </div>
+          <div class="button-container" style="margin-top: 20px;">
+            <button id="resetDilution" class="control-button" onclick="resetDilution()">Reset Dilution</button>
+          </div>
+        </div>
+
+        <div class="column" style="flex: 50%; margin: 20px 80px 20px 20px;">
+          <div id="glassware-container-5" style="height: 500px;">
+            <img id="background-3" src="https://github.com/johannalherman/131-FDW/blob/main/Background_3.png?raw=true">
+            <div id="solution_2" class="solution_2"></div>
+            <div id="solution_0" class="solution_0"></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="tab" style="margin-bottom: 40px;">
+        <button id="transfer2" onclick="transfer2()"><strong>5)</strong> Transfer Dilution to Test Tube</button>
+      </div> 
+
+
+      <div class="row">
+        <div class="column" style="flex: 80%;">
+          <p style="text-align: left; margin-bottom: 20px;"><strong>6)</strong> Use the Genesys Spec 20 spectrophotometer and matched test tubes containing dye stock solution and D.I. water to collect absorbance measurments.</p>
+          <p id="dyeConcDisplay_2" style="text-align: left; margin-bottom: 20px;">Dye stock concentration: <strong><span>- - -</span> M</strong></p>
+          <div id="glassware-container-3">
+            <img id="background-2" src="https://github.com/johannalherman/131-FDW/blob/main/Background_v1.png?raw=true">
+            <div id="dye_2" class="dye_2"></div>
+            <img id="dyeTestTube_2" style="left: 355px;" src="https://github.com/johannalherman/131-FDW/blob/main/Test%20Tube.png?raw=true">
+            <div id="water_2" class="water_2"></div>  
+            <img id="waterTestTube_2" style="left: 275px;" src="https://github.com/johannalherman/131-FDW/blob/main/Test%20Tube.png?raw=true">
+          </div>
+          <div class="button-container" style="margin-top: 380px;">
+            <p style="text-align: center; margin-bottom: 0px;"><strong>Water Test Tube:  </strong>
+              <button id="waterIn_2" onclick="move_waterTestTube_2('in')">In Spec</button>
+              <button id="waterOut_2" onclick="move_waterTestTube_2('out')" type="button" disabled>Out Spec</button>
+            </p>        
+            <p style="text-align: center; margin-top: 0px;"><strong>Food Dye Test Tube:  </strong>        
+              <button id="dyeIn_2" onclick="move_dyeTestTube_2('in')" type="button" disabled>In Spec</button>
+              <button id="dyeOut_2" onclick="move_dyeTestTube_2('out')" type="button" disabled>Out Spec</button>
+            </p>
+          </div>
+        </div>
+
+        <div class="column" style="flex: 20%;">
+          <div id="glassware-container-4">
+            <img id="specPanel_2" src="https://github.com/johannalherman/131-FDW/blob/main/Spec20%20Control%20Panel.png?raw=true">
+            <div class="spec-button">
+              <button id="nm_up_2" style="left: 152px; top: 193px" onclick="nmChange_2('up')">  </button>
+              <button id="nm_down_2" style="left: 204px; top: 193px" onclick="nmChange_2('down')">  </button>
+              <button id="zeroAbs_2" style="left: 178px; top: 254px" onclick="nmZero_2()">  </button>
+            </div>
+            <p id="nmReading_2"><span>000</span> nm</p> 
+            <p id="absReading_2"><span>0.000</span> A</p> 
+          </div>
+        </div>
+      </div>
+      <p style="text-align: left; margin: 20px 20px 20px 20px;"><strong>7)</strong> After preparing and measuring the absorbance of one dilution, use the Reset Dilution button to clear all components and start a new dilution.</p>
+
+      <div class="tab" style="margin: 80px 10px 40px 10px;">
+        <button class="tablinks" onclick="openTabs(event, 'Tab1');" id="defaultOpen"><strong>8)</strong> Create Dye Mixture!</button>
+      </div>
+
+    </div>
+
+    <p style="color: #ff2e37; text-align: left;"><em>This simulation was designed for use on a laptop or desktop computer. Functions may not operate on a mobile device.</em></p>
   </body>
   <script>
-    let nm_num = 579
-    let abs_num = 0
+    function getRandomAmount(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
     let dyeConc = 0
     let bc = []
-    let abs_dye = 0
-    let abs_offSet = 0
-    let abs_TestTube = 0
     let currentDye = ""
-    let currentTestTube = ""
 
-    update_absDisplay();
-    update_nmDisplay();
+    let nm_num_1 = 550
+    let abs_num_1 = 0
+    let abs_dye_1 = 0
+    let abs_offSet_1 = 0
+    let abs_TestTube_1 = 0
+    let currentTestTube_1 = ""
+
+
+    update_absDisplay_1();
+    update_nmDisplay_1();
 
     document.getElementById("dyeSetSelector").addEventListener("change", function(event) {    
       currentDye = event.target.value
       dyeConc = Dyes[currentDye].c0
-      document.querySelector('#dyeConcDisplay span').textContent =  dyeConc.toExponential(2);
+      document.querySelector('#dyeConcDisplay_1 span').textContent =  dyeConc.toExponential(2);
+      document.querySelector('#dyeConcDisplay_2 span').textContent =  dyeConc.toExponential(2);
 
-      const elementDye = document.getElementById("dye");
-      elementDye.style.background = Dyes[currentDye].color;
-      elementDye.style.height = 150 + 'px';
-      elementDye.style.zIndex = "20";
-      
-      const element_dyeTestTube = document.getElementById("dyeTestTube");
+      const elementDye1 = document.getElementById("dye_1");
+      elementDye1.style.background = Dyes[currentDye].color;
+      elementDye1.style.height = 150 + 'px';
+      elementDye1.style.zIndex = "20";
+
+      const element_dyeTestTube = document.getElementById("dyeTestTube_1");
       element_dyeTestTube.style.zIndex = "20";
+
+      const elementSoln0 = document.getElementById("solution_0");
+      elementSoln0.style.background = Dyes[currentDye].color;
+      elementSoln0.style.height = 150 + 'px';
+      const elementSoln2 = document.getElementById("solution_2");
+      elementSoln2.style.background = Dyes[currentDye].color;
+      const elementDye2 = document.getElementById("dye_2");
+      elementDye2.style.background = Dyes[currentDye].color;
 
       bc = [];
       switch (currentDye) {      
@@ -302,30 +482,65 @@
           bc = []; // Default to an empty array
       }
 
-      dyeIn.disabled = false;
+      dyeIn_1.disabled = false;
+      dyeIn_2.disabled = false;
+      waterDropsIn.disabled = false;
+      waterPourIn.disabled = false;
+      dyeDropsIn.disabled = false;
+      dyePourIn.disabled = false;
     });
 
     document.getElementById("resetButton").addEventListener("click", () => {
-      let nm_num = 600
-      let dyeConc = 0
-      let bc = []
-      let abs_offSet = 0
-      let currentDye = ""
-      let currentTestTube = ""
+      // panel 1
+      nm_num_1 = 550
+      dyeConc = 0
+      bc = []
+      abs_offSet_1 = 0
+      currentDye = ""
+      currentTestTube_1 = ""
 
-      move_waterTestTube('out');
-      move_dyeTestTube('out');
-      
-      const elementDye = document.getElementById("dye");
-      elementDye.style.height = 0 + 'px';
-      elementDye.style.zIndex = "-20";
-      
-      const element_dyeTestTube = document.getElementById("dyeTestTube");
+      move_waterTestTube_1('out');
+      move_dyeTestTube_1('out');
+
+      const elementDye1 = document.getElementById("dye_1");
+      elementDye1.style.height = 0 + 'px';
+      elementDye1.style.zIndex = "-20";
+
+      const element_dyeTestTube = document.getElementById("dyeTestTube_1");
       element_dyeTestTube.style.zIndex = "-20";
-      dyeIn.disabled = true;
-      
-      update_absDisplay();
-      update_nmDisplay();
+      dyeIn_1.disabled = true;
+
+      update_absDisplay_1();
+      update_nmDisplay_1();
+
+      document.querySelector('#dyeConcDisplay_1 span').textContent =  '- - -';
+
+      // panel 2
+      nm_num_2 = 550
+      abs_offSet_2 = 0
+      currentTestTube_2 = ""
+
+      move_waterTestTube_2('out');
+      move_dyeTestTube_2('out');
+
+      const elementDye2 = document.getElementById("dye_2");
+      elementDye2.style.height = 0 + 'px';
+
+      const elementSoln0 = document.getElementById("solution_0");
+      elementSoln0.style.height = 0 + 'px';
+
+      dyeIn_2.disabled = true;
+
+      update_absDisplay_2();
+      update_nmDisplay_2();
+
+      solVolume = 0;
+      dyeVol = 0
+      dilutionVol = 0
+      waterVol = 0
+      concRatio = 0
+      increaseLiquidLevel2()
+      document.querySelector('#dyeConcDisplay_2 span').textContent =  '- - -';
 
       // Reset dropdown
       const dyeSetSelector = document.getElementById("dyeSetSelector");
@@ -333,127 +548,348 @@
     });
 
 
-    function update_nmDisplay() {
-      document.querySelector('#nmReading span').textContent =  nm_num;
+    function update_nmDisplay_1() {
+      document.querySelector('#nmReading_1 span').textContent =  nm_num_1;
+    }
+    function update_absDisplay_1() {
+      document.querySelector('#absReading_1 span').textContent =  (abs_dye_1 + abs_TestTube_1 - abs_offSet_1).toFixed(3);
     }
 
-    function update_absDisplay() {
-      document.querySelector('#absReading span').textContent =  (abs_dye + abs_TestTube - abs_offSet).toFixed(3);
-    }
-
-    function move_waterTestTube(direction) {
+    function move_waterTestTube_1(direction) {
       // Select the element by its ID
-      const elementw1 = document.getElementById("waterTestTube");
-      const elementw2 = document.getElementById("water");
+      const elementw1 = document.getElementById("waterTestTube_1");
+      const elementw2 = document.getElementById("water_1");
 
       // Change the z-index
       if (direction === 'in'){
         elementw1.style.zIndex = "-20";
         elementw2.style.zIndex = "-20";
-        dyeIn.disabled = true;
-        dyeOut.disabled = true;
-        waterIn.disabled = true;
-        waterOut.disabled = false;
-        currentTestTube = "waterTestTube";
-        abs_TestTube = bc_TestTube[nm_num];
-        update_absDisplay();
+        dyeIn_1.disabled = true;
+        dyeOut_1.disabled = true;
+        waterIn_1.disabled = true;
+        waterOut_1.disabled = false;
+        currentTestTube_1 = "waterTestTube";
+        abs_TestTube_1 = bc_TestTube[nm_num_1];
+        update_absDisplay_1();
       }
       if (direction === 'out'){
         elementw1.style.zIndex = "20";
         elementw2.style.zIndex = "20";
-        dyeIn.disabled = false;
-        dyeOut.disabled = true;
-        waterIn.disabled = false;
-        waterOut.disabled = true;
-        currentTestTube = "";
-        abs_TestTube = 0;
-        update_absDisplay();
+        dyeIn_1.disabled = false;
+        dyeOut_1.disabled = true;
+        waterIn_1.disabled = false;
+        waterOut_1.disabled = true;
+        currentTestTube_1 = "";
+        abs_TestTube_1 = 0;
+        update_absDisplay_1();
       }
     }
-    function move_dyeTestTube(direction) {
+    function move_dyeTestTube_1(direction) {
       // Select the element by its ID
-      const elementd1 = document.getElementById("dyeTestTube");
-      const elementd2 = document.getElementById("dye");
+      const elementd1 = document.getElementById("dyeTestTube_1");
+      const elementd2 = document.getElementById("dye_1");
 
       // Change the z-index
       if (direction === 'in'){
         elementd1.style.zIndex = "-20";
         elementd2.style.zIndex = "-20";
-        dyeIn.disabled = true;
-        dyeOut.disabled = false;
-        waterIn.disabled = true;
-        waterOut.disabled = true;
-        currentTestTube = "dyeTestTube";
-        abs_TestTube = bc_TestTube[nm_num];
-        abs_dye = bc[nm_num];
-        update_absDisplay();
+        dyeIn_1.disabled = true;
+        dyeOut_1.disabled = false;
+        waterIn_1.disabled = true;
+        waterOut_1.disabled = true;
+        currentTestTube_1 = "dyeTestTube";
+        abs_TestTube_1 = bc_TestTube[nm_num_1];
+        abs_dye_1 = bc[nm_num_1];
+        update_absDisplay_1();
       }
       if (direction === 'out'){
         elementd1.style.zIndex = "20";
         elementd2.style.zIndex = "20";
-        dyeIn.disabled = false;
-        dyeOut.disabled = true;
-        waterIn.disabled = false;
-        waterOut.disabled = true;
-        currentTestTube = "";
-        abs_TestTube = 0;
-        abs_dye = 0;
-        update_absDisplay();
+        dyeIn_1.disabled = false;
+        dyeOut_1.disabled = true;
+        waterIn_1.disabled = false;
+        waterOut_1.disabled = true;
+        currentTestTube_1 = "";
+        abs_TestTube_1 = 0;
+        abs_dye_1 = 0;
+        update_absDisplay_1();
       }
 
     }
 
-    function nmChange(direction) {
-      document.querySelector('#nmReading span').textContent =  '- - -';
-      document.querySelector('#absReading span').textContent =  '- . - - -';
+    function nmChange_1(direction) {
+      document.querySelector('#nmReading_1 span').textContent =  '- - -';
+      document.querySelector('#absReading_1 span').textContent =  '- . - - -';
 
 
       if (direction === 'up') {
-        if (nm_num < 900) {
-          nm_num += 1;
-          if (currentTestTube === "dyeTestTube") {
-            abs_dye = bc[nm_num];
-          } else (abs_dye = 0)
+        if (nm_num_1 < 900) {
+          nm_num_1 += 1;
+          if (currentTestTube_1 === "dyeTestTube") {
+            abs_dye_1 = bc[nm_num_1];
+          } else (abs_dye_1 = 0)
         }
       } else {
-        if (nm_num > 380) {
-          nm_num -= 1;
-          if (currentTestTube === "dyeTestTube") {
-            abs_dye = bc[nm_num];
-          } else (abs_dye = 0) 
+        if (nm_num_1 > 380) {
+          nm_num_1 -= 1;
+          if (currentTestTube_1 === "dyeTestTube") {
+            abs_dye_1 = bc[nm_num_1];
+          } else (abs_dye_1 = 0) 
         }
       }
 
-      if (currentTestTube === "dyeTestTube" || currentTestTube === "waterTestTube") {
-        abs_TestTube = bc_TestTube[nm_num];
-      } else (abs_TestTube = 0)
-      
+      if (currentTestTube_1 === "dyeTestTube" || currentTestTube_1 === "waterTestTube") {
+        abs_TestTube_1 = bc_TestTube[nm_num_1];
+      } else (abs_TestTube_1 = 0)
+
       setTimeout(() => {
-        update_nmDisplay();
-        update_absDisplay();
-      }, 1000);
+        update_nmDisplay_1();
+        update_absDisplay_1();
+      }, 500);
     }
 
-    function nmZero() {
-      switch (currentTestTube) {
+    function nmZero_1() {
+      switch (currentTestTube_1) {
         case 'waterTestTube':
-          abs_offSet = bc_TestTube[nm_num];
+          abs_offSet_1 = bc_TestTube[nm_num_1];
           break;
         case 'dyeTestTube':
-          abs_offSet = bc[nm_num];
+          abs_offSet_1 = bc[nm_num_1];
           break;
         default:
-          abs_offSet = 0;
+          abs_offSet_1 = 0;
       }
-      update_absDisplay();
+      update_absDisplay_1();
     }
+
+
+    let solVolume = 0
+    let stockVolume = 150
+    let liquidHeight2 = 0
+    let cylinderVolume = 400 // Total px hieght volume of the cylinder
+    let px_scalor_2 = 38.5 // number of px in mL in cylinder image
+    let increment = 0 // Adjust this value for how much water should be added to cylinder per click
+    let dyeVol = 0
+    let dilutionVol = 0
+    let waterVol = 0
+    let concRatio = 0
+
+    function addWater(size) {
+      if (size === 'drops') {
+        amount = 0.1
+      } else {
+        amount = getRandomAmount(2, 3)
+      }
+      if (cylinderVolume / px_scalor_2 < solVolume + amount) {
+      } else {      
+        solVolume += amount
+        waterVol += amount
+        increaseLiquidLevel2()
+        calcDilution ()
+      }
+    }
+    function addSolution(size) {
+      if (size === 'drops') {
+        amount = 0.1
+      } else {
+        amount = getRandomAmount(2, 3)
+      }
+      if (cylinderVolume / px_scalor_2 < solVolume + amount) {
+      } else {      
+        solVolume += amount
+        dyeVol += amount        
+        increaseLiquidLevel2()
+        calcDilution ()
+        decreaseLiquidLevel1(amount)
+      }
+    }
+    function resetDilution() {
+      solVolume = 0;
+      dyeVol = 0
+      dilutionVol = 0
+      waterVol = 0
+      increaseLiquidLevel2()
+      calcDilution ()
+
+      const elementSolnTestTube = document.getElementById("dye_2");
+      elementSolnTestTube.style.height = 0 + "px";
+      waterDropsIn.disabled = false;
+      waterPourIn.disabled = false;
+      dyeDropsIn.disabled = false;
+      dyePourIn.disabled = false;
+    }
+    function increaseLiquidLevel2() {
+      if (solVolume > 0) {
+        document.getElementById("solution_2").style.height =
+          solVolume * px_scalor_2 + 4 + "px"
+      } else {
+        document.getElementById("solution_2").style.height =
+          solVolume * px_scalor_2 + "px"
+      }
+    }
+    function decreaseLiquidLevel1(amount) {
+      stockVolume -= amount
+      document.getElementById("solution_0").style.height = stockVolume + "px"
+    }
+
+    function calcDilution () {
+      dyeConc = (Dyes[currentDye].c0 * dyeVol) / solVolume
+
+      // adjust shading
+      concRatio = (dyeConc / Dyes[currentDye].c0);
+      const elementSoln = document.getElementById("solution_2");
+      elementSoln.style.opacity = 0.50 * concRatio;
+      const elementSolnTestTube = document.getElementById("dye_2");
+      elementSolnTestTube.style.opacity = 0.50 * concRatio;
+    }
+
+    function transfer2() {
+      if (solVolume > 3) {
+        solVolume -= 3
+        increaseLiquidLevel2()
+        const elementSolnTestTube = document.getElementById("dye_2");
+        elementSolnTestTube.style.height = 150 + "px";
+        waterDropsIn.disabled = true;
+        waterPourIn.disabled = true;
+        dyeDropsIn.disabled = true;
+        dyePourIn.disabled = true;
+      }
+    }
+
+
+
+    let nm_num_2 = 550
+    let abs_num_2 = 0
+    let abs_dye_2 = 0
+    let abs_offSet_2 = 0
+    let abs_TestTube_2 = 0
+    let currentTestTube_2 = ""
+
+    update_absDisplay_2();
+    update_nmDisplay_2();
+
+    function update_nmDisplay_2() {
+      document.querySelector('#nmReading_2 span').textContent =  nm_num_2;
+    }
+    function update_absDisplay_2() {
+      document.querySelector('#absReading_2 span').textContent =  (abs_dye_2 + abs_TestTube_2 - abs_offSet_2).toFixed(3);
+    }
+
+    function move_waterTestTube_2(direction) {
+      // Select the element by its ID
+      const elementw1 = document.getElementById("waterTestTube_2");
+      const elementw2 = document.getElementById("water_2");
+
+      // Change the z-index
+      if (direction === 'in'){
+        elementw1.style.zIndex = "-20";
+        elementw2.style.zIndex = "-20";
+        dyeIn_2.disabled = true;
+        dyeOut_2.disabled = true;
+        waterIn_2.disabled = true;
+        waterOut_2.disabled = false;
+        currentTestTube_2 = "waterTestTube";
+        abs_TestTube_2 = bc_TestTube[nm_num_2];
+        update_absDisplay_2();
+      }
+      if (direction === 'out'){
+        elementw1.style.zIndex = "20";
+        elementw2.style.zIndex = "20";
+        dyeIn_2.disabled = false;
+        dyeOut_2.disabled = true;
+        waterIn_2.disabled = false;
+        waterOut_2.disabled = true;
+        currentTestTube_2 = "";
+        abs_TestTube_2 = 0;
+        update_absDisplay_2();
+      }
+    }
+    function move_dyeTestTube_2(direction) {
+      // Select the element by its ID
+      const elementd1 = document.getElementById("dyeTestTube_2");
+      const elementd2 = document.getElementById("dye_2");
+
+      // Change the z-index
+      if (direction === 'in'){
+        elementd1.style.zIndex = "-20";
+        elementd2.style.zIndex = "-20";
+        dyeIn_2.disabled = true;
+        dyeOut_2.disabled = false;
+        waterIn_2.disabled = true;
+        waterOut_2.disabled = true;
+        currentTestTube_2 = "dyeTestTube";
+        abs_TestTube_2 = bc_TestTube[nm_num_2];
+        abs_dye_2 = bc[nm_num_2] * concRatio;
+        update_absDisplay_2();
+      }
+      if (direction === 'out'){
+        elementd1.style.zIndex = "20";
+        elementd2.style.zIndex = "20";
+        dyeIn_2.disabled = false;
+        dyeOut_2.disabled = true;
+        waterIn_2.disabled = false;
+        waterOut_2.disabled = true;
+        currentTestTube_2 = "";
+        abs_TestTube_2 = 0;
+        abs_dye_2 = 0;
+        update_absDisplay_2();
+      }
+
+    }
+
+    function nmChange_2(direction) {
+      document.querySelector('#nmReading_2 span').textContent =  '- - -';
+      document.querySelector('#absReading_2 span').textContent =  '- . - - -';
+
+
+      if (direction === 'up') {
+        if (nm_num_2 < 900) {
+          nm_num_2 += 1;
+          if (currentTestTube_2 === "dyeTestTube") {
+            abs_dye_2 = bc[nm_num_2] * concRatio;
+          } else (abs_dye_2 = 0)
+        }
+      } else {
+        if (nm_num_2 > 380) {
+          nm_num_2 -= 1;
+          if (currentTestTube_2 === "dyeTestTube") {
+            abs_dye_2 = bc[nm_num_2] * concRatio;
+          } else (abs_dye_2 = 0) 
+        }
+      }
+
+      if (currentTestTube_2 === "dyeTestTube" || currentTestTube_2 === "waterTestTube") {
+        abs_TestTube_2 = bc_TestTube[nm_num_2];
+      } else (abs_TestTube_2 = 0)
+
+      setTimeout(() => {
+        update_nmDisplay_2();
+        update_absDisplay_2();
+      }, 500);
+    }
+
+    function nmZero_2() {
+      switch (currentTestTube_2) {
+        case 'waterTestTube':
+          abs_offSet_2 = bc_TestTube[nm_num_2];
+          break;
+        case 'dyeTestTube':
+          abs_offSet_2 = bc[nm_num_2];
+          break;
+        default:
+          abs_offSet_2 = 0;
+      }
+      update_absDisplay_2();
+    }
+
+
+
 
     const Dyes = {
       Red: { c0: 3.725e-5, color: "#E02910"},
-      Blue: { c0: 8.108e-6, color: "#0000FF"},
+      Blue: { c0: 8.108e-6, color: "#3333ff"},
       Yellow: { c0: 2.871e-5, color: "#ffe24e"}
     };
-
 
     // Wavelength (lambda) as key, Corrected Absorbance (a0) as value
     var bc_red = {
@@ -2548,6 +2984,30 @@
       '899'	: -0.003,
       '900'	: 0.006,
     };
+
+    function openTabs(evt, Sim_part) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(Sim_part).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
 
   </script>
 </html>
