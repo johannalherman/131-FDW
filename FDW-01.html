@@ -639,7 +639,7 @@
     let currentDye = ""
     let currentDye2 = ""
 
-    let nm_num_1 = 550
+    let nm_num = 550
     let abs_num_1 = 0
     let abs_dye_1 = 0
     let abs_offSet_1 = 0
@@ -648,7 +648,7 @@
 
 
     update_absDisplay_1();
-    update_nmDisplay_1();
+    update_nmDisplay();
 
     document.getElementById("dyeSetSelector").addEventListener("change", function(event) {    
       currentDye = event.target.value
@@ -759,7 +759,7 @@
       dyeIn_1.disabled = true;
 
       update_absDisplay_1();
-      update_nmDisplay_1();
+      update_nmDisplay();
 
       document.querySelector('#dyeConcDisplay_1 span').textContent =  '- - -';
 
@@ -778,7 +778,6 @@
       dyeIn_2.disabled = true;
 
       update_absDisplay_2();
-      update_nmDisplay_2();
 
       solVolume = 0
       dyeVol = 0
@@ -833,8 +832,10 @@
     });
 
 
-    function update_nmDisplay_1() {
-      document.querySelector('#nmReading_1 span').textContent =  nm_num_1;
+    function update_nmDisplay() {
+      document.querySelector('#nmReading_1 span').textContent =  nm_num;
+      document.querySelector('#nmReading_2 span').textContent =  nm_num;
+      document.querySelector('#nmReading_3 span').textContent =  nm_num;
     }
     function update_absDisplay_1() {
       document.querySelector('#absReading_1 span').textContent =  (abs_dye_1 + abs_TestTube_1 - abs_offSet_1).toFixed(3);
@@ -854,7 +855,7 @@
         waterIn_1.disabled = true;
         waterOut_1.disabled = false;
         currentTestTube_1 = "waterTestTube";
-        abs_TestTube_1 = bc_TestTube[nm_num_1];
+        abs_TestTube_1 = bc_TestTube[nm_num];
         update_absDisplay_1();
       }
       if (direction === 'out'){
@@ -883,8 +884,8 @@
         waterIn_1.disabled = true;
         waterOut_1.disabled = true;
         currentTestTube_1 = "dyeTestTube";
-        abs_TestTube_1 = bc_TestTube[nm_num_1];
-        abs_dye_1 = bc[nm_num_1];
+        abs_TestTube_1 = bc_TestTube[nm_num];
+        abs_dye_1 = bc[nm_num];
         update_absDisplay_1();
       }
       if (direction === 'out'){
@@ -908,27 +909,27 @@
 
 
       if (direction === 'up') {
-        if (nm_num_1 < 900) {
-          nm_num_1 += 1;
+        if (nm_num < 900) {
+          nm_num += 1;
           if (currentTestTube_1 === "dyeTestTube") {
-            abs_dye_1 = bc[nm_num_1];
+            abs_dye_1 = bc[nm_num];
           } else (abs_dye_1 = 0)
         }
       } else {
-        if (nm_num_1 > 380) {
-          nm_num_1 -= 1;
+        if (nm_num > 380) {
+          nm_num -= 1;
           if (currentTestTube_1 === "dyeTestTube") {
-            abs_dye_1 = bc[nm_num_1];
+            abs_dye_1 = bc[nm_num];
           } else (abs_dye_1 = 0) 
         }
       }
 
       if (currentTestTube_1 === "dyeTestTube" || currentTestTube_1 === "waterTestTube") {
-        abs_TestTube_1 = bc_TestTube[nm_num_1];
+        abs_TestTube_1 = bc_TestTube[nm_num];
       } else (abs_TestTube_1 = 0)
 
       setTimeout(() => {
-        update_nmDisplay_1();
+        update_nmDisplay();
         update_absDisplay_1();
       }, 500);
     }
@@ -936,10 +937,10 @@
     function nmZero_1() {
       switch (currentTestTube_1) {
         case 'waterTestTube':
-          abs_offSet_1 = bc_TestTube[nm_num_1];
+          abs_offSet_1 = bc_TestTube[nm_num];
           break;
         case 'dyeTestTube':
-          abs_offSet_1 = bc[nm_num_1];
+          abs_offSet_1 = bc[nm_num];
           break;
         default:
           abs_offSet_1 = 0;
@@ -1045,7 +1046,6 @@
 
 
 
-    let nm_num_2 = 550
     let abs_num_2 = 0
     let abs_dye_2 = 0
     let abs_offSet_2 = 0
@@ -1053,10 +1053,9 @@
     let currentTestTube_2 = ""
 
     update_absDisplay_2();
-    update_nmDisplay_2();
 
     function update_nmDisplay_2() {
-      document.querySelector('#nmReading_2 span').textContent =  nm_num_2;
+      document.querySelector('#nmReading_2 span').textContent =  nm_num;
     }
     function update_absDisplay_2() {
       document.querySelector('#absReading_2 span').textContent =  (abs_dye_2 + abs_TestTube_2 - abs_offSet_2).toFixed(3);
@@ -1076,7 +1075,7 @@
         waterIn_2.disabled = true;
         waterOut_2.disabled = false;
         currentTestTube_2 = "waterTestTube";
-        abs_TestTube_2 = bc_TestTube[nm_num_2];
+        abs_TestTube_2 = bc_TestTube[nm_num];
         update_absDisplay_2();
       }
       if (direction === 'out'){
@@ -1105,8 +1104,8 @@
         waterIn_2.disabled = true;
         waterOut_2.disabled = true;
         currentTestTube_2 = "dyeTestTube";
-        abs_TestTube_2 = bc_TestTube[nm_num_2];
-        abs_dye_2 = bc[nm_num_2] * concRatio;
+        abs_TestTube_2 = bc_TestTube[nm_num];
+        abs_dye_2 = bc[nm_num] * concRatio;
         update_absDisplay_2();
       }
       if (direction === 'out'){
@@ -1130,27 +1129,27 @@
 
 
       if (direction === 'up') {
-        if (nm_num_2 < 900) {
-          nm_num_2 += 1;
+        if (nm_num < 900) {
+          nm_num += 1;
           if (currentTestTube_2 === "dyeTestTube") {
-            abs_dye_2 = bc[nm_num_2] * concRatio;
+            abs_dye_2 = bc[nm_num] * concRatio;
           } else (abs_dye_2 = 0)
         }
       } else {
-        if (nm_num_2 > 380) {
-          nm_num_2 -= 1;
+        if (nm_num > 380) {
+          nm_num -= 1;
           if (currentTestTube_2 === "dyeTestTube") {
-            abs_dye_2 = bc[nm_num_2] * concRatio;
+            abs_dye_2 = bc[nm_num] * concRatio;
           } else (abs_dye_2 = 0) 
         }
       }
 
       if (currentTestTube_2 === "dyeTestTube" || currentTestTube_2 === "waterTestTube") {
-        abs_TestTube_2 = bc_TestTube[nm_num_2];
+        abs_TestTube_2 = bc_TestTube[nm_num];
       } else (abs_TestTube_2 = 0)
 
       setTimeout(() => {
-        update_nmDisplay_2();
+        update_nmDisplay();
         update_absDisplay_2();
       }, 500);
     }
@@ -1158,10 +1157,10 @@
     function nmZero_2() {
       switch (currentTestTube_2) {
         case 'waterTestTube':
-          abs_offSet_2 = bc_TestTube[nm_num_2];
+          abs_offSet_2 = bc_TestTube[nm_num];
           break;
         case 'dyeTestTube':
-          abs_offSet_2 = bc[nm_num_2];
+          abs_offSet_2 = bc[nm_num];
           break;
         default:
           abs_offSet_2 = 0;
@@ -1294,7 +1293,6 @@
 
 
 
-    let nm_num_3 = 550
     let abs_num_3 = 0
     let abs_dye_3 = 0
     let abs_offSet_3 = 0
@@ -1302,10 +1300,9 @@
     let currentTestTube_3 = ""
 
     update_absDisplay_3();
-    update_nmDisplay_3();
 
     function update_nmDisplay_3() {
-      document.querySelector('#nmReading_3 span').textContent =  nm_num_3;
+      document.querySelector('#nmReading_3 span').textContent =  nm_num;
     }
     function update_absDisplay_3() {
       document.querySelector('#absReading_3 span').textContent =  (abs_dye_3 + abs_TestTube_3 - abs_offSet_3).toFixed(3);
@@ -1325,7 +1322,7 @@
         waterIn_3.disabled = true;
         waterOut_3.disabled = false;
         currentTestTube_3 = "waterTestTube";
-        abs_TestTube_3 = bc_TestTube[nm_num_3];
+        abs_TestTube_3 = bc_TestTube[nm_num];
         update_absDisplay_3();
       }
       if (direction === 'out'){
@@ -1356,8 +1353,8 @@
         waterIn_3.disabled = true;
         waterOut_3.disabled = true;
         currentTestTube_3 = "dyeTestTube";
-        abs_TestTube_3 = bc_TestTube[nm_num_3];
-        abs_dye_3 = (bc[nm_num_3] * concRatio_3a) + (bc2[nm_num_3] * concRatio_3b);
+        abs_TestTube_3 = bc_TestTube[nm_num];
+        abs_dye_3 = (bc[nm_num] * concRatio_3a) + (bc2[nm_num] * concRatio_3b);
         update_absDisplay_3();
       }
       if (direction === 'out'){
@@ -1382,27 +1379,27 @@
 
 
       if (direction === 'up') {
-        if (nm_num_3 < 900) {
-          nm_num_3 += 1;
+        if (nm_num < 900) {
+          nm_num += 1;
           if (currentTestTube_3 === "dyeTestTube") {
-            abs_dye_3 = (bc[nm_num_3] * concRatio_3a) + (bc2[nm_num_3] * concRatio_3b);
+            abs_dye_3 = (bc[nm_num] * concRatio_3a) + (bc2[nm_num] * concRatio_3b);
           } else (abs_dye_3 = 0)
         }
       } else {
-        if (nm_num_3 > 380) {
-          nm_num_3 -= 1;
+        if (nm_num > 380) {
+          nm_num -= 1;
           if (currentTestTube_3 === "dyeTestTube") {
-            abs_dye_3 = (bc[nm_num_3] * concRatio_3a) + (bc2[nm_num_3] * concRatio_3b);
+            abs_dye_3 = (bc[nm_num] * concRatio_3a) + (bc2[nm_num] * concRatio_3b);
           } else (abs_dye_3 = 0) 
         }
       }
 
       if (currentTestTube_3 === "dyeTestTube" || currentTestTube_3 === "waterTestTube") {
-        abs_TestTube_3 = bc_TestTube[nm_num_3];
+        abs_TestTube_3 = bc_TestTube[nm_num];
       } else (abs_TestTube_3 = 0)
 
       setTimeout(() => {
-        update_nmDisplay_3();
+        update_nmDisplay();
         update_absDisplay_3();
       }, 500);
     }
@@ -1410,10 +1407,10 @@
     function nmZero_3() {
       switch (currentTestTube_3) {
         case 'waterTestTube':
-          abs_offSet_3 = bc_TestTube[nm_num_3];
+          abs_offSet_3 = bc_TestTube[nm_num];
           break;
         case 'dyeTestTube':
-          abs_offSet_3 = bc[nm_num_3];
+          abs_offSet_3 = bc[nm_num];
           break;
         default:
           abs_offSet_3 = 0;
